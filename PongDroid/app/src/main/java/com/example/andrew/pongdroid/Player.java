@@ -7,6 +7,8 @@ public class Player {
     private float speed; // pixels per movement
     private float position; // 0 is center of Screen Height
 
+    public Player(){ }
+
     public Player( String name ){
         this.name = name;
     }

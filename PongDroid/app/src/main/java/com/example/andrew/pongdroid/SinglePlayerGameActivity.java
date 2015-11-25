@@ -11,7 +11,7 @@ public class SinglePlayerGameActivity extends Game {
         super.onCreate(savedInstanceState);
 
         player1 = new Player("You");
-        player2 = new Player("AI");
+        player2 = new AI( this.difficulty );
     }
 
     @Override
