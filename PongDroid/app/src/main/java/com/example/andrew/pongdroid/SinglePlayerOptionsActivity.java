@@ -15,6 +15,28 @@ public class SinglePlayerOptionsActivity extends Activity {
 
     public void easyMode( View v ){
 
-        startActivity(new Intent(this, HomeActivity.class));
+        Intent i = new Intent( this, SinglePlayerGameActivity.class );
+
+        i.putExtra( Game.DIFFICULTY, Game.Difficulty.EASY );
+
+        startActivity( i );
+    }
+
+    public void mediumMode( View v ){
+
+        Intent i = new Intent( this, SinglePlayerGameActivity.class );
+
+        i.putExtra( Game.DIFFICULTY, Game.Difficulty.MEDIUM );
+
+        startActivity( i );
+    }
+
+    public void hardMode( View v ){
+
+        Intent i = new Intent( this, SinglePlayerGameActivity.class );
+
+        i.putExtra( Game.DIFFICULTY, Game.Difficulty.HARD );
+
+        startActivity( i );
     }
 }
