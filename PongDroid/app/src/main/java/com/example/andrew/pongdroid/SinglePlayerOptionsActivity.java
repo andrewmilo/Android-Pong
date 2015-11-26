@@ -10,7 +10,7 @@ public class SinglePlayerOptionsActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.singleplayer);
+        setContentView(R.layout.singleplayeroptions);
     }
 
     public void easyMode( View v ){

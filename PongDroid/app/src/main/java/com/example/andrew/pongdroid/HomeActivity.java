@@ -17,19 +17,19 @@ public class HomeActivity extends Activity {
     public void singlePlayer( View v ){
 
         // Intent to SinglePlayer
-        startActivity(new Intent(this, SinglePlayerOptionsActivity.class));
+        startActivity( new Intent( this, SinglePlayerOptionsActivity.class ) );
     }
 
     public void multiPlayer( View v ){
 
         // Intent to MultiPlayer
-        startActivity(new Intent(this, MultiPlayerOptionsActivity.class));
+        startActivity( new Intent( this, MultiPlayerOptionsActivity.class ) );
     }
 
     public void info( View v ){
 
         // Intent to InfoView
-        startActivity(new Intent(this, InfoActivity.class));
+        startActivity( new Intent( this, InfoActivity.class ) );
     }
 
 }

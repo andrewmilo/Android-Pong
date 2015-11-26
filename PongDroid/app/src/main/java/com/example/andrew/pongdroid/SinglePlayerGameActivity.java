@@ -1,17 +1,19 @@
 package com.example.andrew.pongdroid;
 
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.MotionEvent;
-import android.view.View;
 
 public class SinglePlayerGameActivity extends Game {
 
     @Override
     public void onCreate( Bundle savedInstanceState ){
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.singleplayergame);
 
-        player1 = new Player("You");
+        player1 = new Player( "You" );
         player2 = new AI( this.difficulty );
+
     }
 
     @Override

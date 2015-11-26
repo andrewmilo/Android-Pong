@@ -1,12 +1,21 @@
 package com.example.andrew.pongdroid;
 
 import android.app.Activity;
+import android.graphics.Point;
 import android.os.Bundle;
-import android.view.View.OnTouchListener;
+import android.view.Display;
 
 public abstract class Game extends Activity {
 
-    protected static final int FPS = 24; // Max FPS for gameplay
+    public static final int FPS = 24; // Max FPS for gameplay
+
+    public final static String PLAYERS    = "players",
+                               DIFFICULTY = "difficulty";
+
+    protected int screenWidth;
+    protected int screenHeight;
+
+    protected GameView gameView; // view that manages collisions
 
     protected Difficulty difficulty;
     public enum Difficulty {
@@ -14,9 +23,6 @@ public abstract class Game extends Activity {
         MEDIUM,
         HARD
     }
-
-    public final static String PLAYERS    = "players",
-                               DIFFICULTY = "difficulty";
 
     protected Ball ball;
     protected Player player1;
@@ -36,6 +42,13 @@ public abstract class Game extends Activity {
 
             // Instantiate ball
             ball = new Ball();
+
+            // Cache screen size
+            Display display = getWindowManager().getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            screenWidth = size.x;
+            screenHeight = size.y;
 
         }catch(Exception e){
 

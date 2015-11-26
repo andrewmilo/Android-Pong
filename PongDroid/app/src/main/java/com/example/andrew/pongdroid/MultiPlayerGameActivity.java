@@ -15,9 +15,25 @@ public class MultiPlayerGameActivity extends Game {
         player2 = new Player("P2");
     }
 
-
     @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        return false;
+    public boolean onTouchEvent( MotionEvent event ) {
+
+        int index = event.getActionIndex();
+        int action = event.getActionMasked();
+        int pointerId = event.getPointerId( index );
+
+        switch( action ){
+
+            case MotionEvent.ACTION_DOWN:
+                break;
+            case MotionEvent.ACTION_MOVE:
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+            case MotionEvent.ACTION_CANCEL:
+                break;
+        }
+
+        return true;
     }
 }
