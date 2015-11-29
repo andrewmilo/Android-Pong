@@ -17,16 +17,21 @@ public class SinglePlayerOptionsActivity extends Activity {
 
         Intent i = new Intent( this, SinglePlayerGameActivity.class );
 
-        i.putExtra( Game.DIFFICULTY, Game.Difficulty.EASY );
+        Bundle mBundle = new Bundle();
+        mBundle.putSerializable( Game.DIFFICULTY, Game.Difficulty.EASY );
+        i.putExtras(mBundle);
 
-        startActivity( i );
+        startActivity(i);
+
     }
 
     public void mediumMode( View v ){
 
         Intent i = new Intent( this, SinglePlayerGameActivity.class );
 
-        i.putExtra( Game.DIFFICULTY, Game.Difficulty.MEDIUM );
+        Bundle mBundle = new Bundle();
+        mBundle.putSerializable( Game.DIFFICULTY, Game.Difficulty.MEDIUM );
+        i.putExtras( mBundle );
 
         startActivity( i );
     }
@@ -35,7 +40,9 @@ public class SinglePlayerOptionsActivity extends Activity {
 
         Intent i = new Intent( this, SinglePlayerGameActivity.class );
 
-        i.putExtra( Game.DIFFICULTY, Game.Difficulty.HARD );
+        Bundle mBundle = new Bundle();
+        mBundle.putSerializable( Game.DIFFICULTY, Game.Difficulty.HARD );
+        i.putExtras( mBundle);
 
         startActivity( i );
     }

@@ -11,8 +11,8 @@ public class MultiPlayerGameActivity extends Game {
     public void onCreate( Bundle savedInstanceState ){
         super.onCreate(savedInstanceState);
 
-        player1 = new Player("P1");
-        player2 = new Player("P2");
+        player1 = new Player( "P1", 40, 20 );
+        player2 = new Player( "P1", 40, 20 );
     }
 
     @Override
