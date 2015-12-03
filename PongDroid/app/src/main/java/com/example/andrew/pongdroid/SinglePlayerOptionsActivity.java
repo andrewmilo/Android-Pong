@@ -42,7 +42,7 @@ public class SinglePlayerOptionsActivity extends Activity {
 
         Bundle mBundle = new Bundle();
         mBundle.putSerializable( Game.DIFFICULTY, Game.Difficulty.HARD );
-        i.putExtras( mBundle);
+        i.putExtras( mBundle );
 
         startActivity( i );
     }

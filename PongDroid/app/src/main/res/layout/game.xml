@@ -25,6 +25,15 @@
         android:gravity="center"
         android:textColor="#fff"
         android:background="#7f1b0402"
+        android:text="5:00"
+        android:id="@+id/clock"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="#fff"
+        android:background="#7f1b0402"
         android:text="0"
         android:id="@+id/score2"/>
 </LinearLayout>

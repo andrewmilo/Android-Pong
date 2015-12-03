@@ -3,6 +3,7 @@ package com.example.andrew.pongdroid;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
@@ -36,6 +37,17 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         @Override
         public void handleMessage( Message inputMessage ){
 
+            if( inputMessage != null) {
+                if (inputMessage.what == -1) {
+
+                    Toast.makeText( (Activity) getContext(),
+                            ( game.player1.getScore() > game.player2.getScore())
+                                    ? "You lose!" :
+                                     game.player1.getScore() < game.player2.getScore()
+                                             ? "You win!" : "Draw!", Toast.LENGTH_LONG ).show();
+                }
+            }
+
             draw(); // update UI
             invalidate(); // mark current frame dirty
         }
@@ -67,10 +79,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
 
-        Toast.makeText( getContext(), "CREATED", Toast.LENGTH_SHORT ).show();
-
-        game.initialize();
-        game.start();
+        game.initialize(); // default positions
+        game.start(); // serve ball
 
         synchronized (this) {
             hasActiveHolder = true;
@@ -96,7 +106,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             this.notifyAll();
         }
 
-        Toast.makeText( getContext(), "STOPPED THREAD", Toast.LENGTH_LONG ).show();
         gameViewRunnable.toggle();
     }
 
@@ -109,13 +118,18 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
                     Canvas canvas = surfaceHolder.lockCanvas();
 
                     // Draw background
-                    canvas.drawRGB(255, 255, 255);
+                    canvas.drawRGB( 255, 255, 255 );
 
                     // Draw score
-//                    TextView tv = (TextView) ((Activity) getContext()).findViewById(R.id.score1);
-//                    tv.setText( game.getPlayer1().getScore() );
-//                    tv = (TextView) game.findViewById( R.id.score2 );
-//                    tv.setText(game.getPlayer2().getScore());
+                    TextView tv = (TextView) ( (Activity) getContext() ).findViewById(R.id.score1);
+                    tv.setText( String.valueOf( game.getPlayer1().getScore() ) );
+                    tv = (TextView) game.findViewById( R.id.score2 );
+                    tv.setText(String.valueOf(game.getPlayer2().getScore()));
+
+                    // Draw timer
+                    tv = (TextView) ( (Activity) getContext() ).findViewById(R.id.clock);
+                    tv.setText( String.valueOf( (int)game.getMaxTime() - (int)game.getTime() / 1000 ) + "s");
+                    tv.setTextColor(Color.GREEN);
 
                     // Draw players
                     canvas.drawRect( new Rect(

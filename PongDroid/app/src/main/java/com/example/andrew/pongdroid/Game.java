@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.Display;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -11,7 +12,7 @@ import android.widget.Toast;
 
 public abstract class Game extends Activity {
 
-    public static final int FPS = 24; // Max FPS for gameplay
+    public static final int FPS = 30; // Max FPS for gameplay
 
     public final static String PLAYERS    = "players",
                                DIFFICULTY = "difficulty";
@@ -35,6 +36,9 @@ public abstract class Game extends Activity {
 
     private int screenWidth;
     private int screenHeight;
+
+    private double time;
+    private double maxTime = 100;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,19 +86,37 @@ public abstract class Game extends Activity {
 
         // Player 1 on RIGHT side
         getPlayer1().setPosition(
-                screenWidth - getPlayer1().getWidth()/2,
-                screenHeight/2 - getPlayer1().getWidth() );
+                screenWidth - getPlayer1().getWidth() / 2 - 200,
+                screenHeight / 2 - getPlayer1().getWidth());
         // Player 2 on LEFT side
         getPlayer2().setPosition(
-                getPlayer2().getWidth()/2,
-                screenHeight/2 - getPlayer2().getWidth() );
+                getPlayer2().getWidth() / 2 + 200,
+                screenHeight / 2 - getPlayer2().getWidth());
     }
 
     /* Serves the ball */
     public void start(){
 
         // Serve ball towards the player
-        int n = 20;
-        ball.setXVelocity(n); // FPS * n pixels per second
+        ball.setXVelocity( FPS ); // FPS pixels per second
+        ball.setYVelocity(0);
     }
+
+    public void end(){
+
+        initialize();
+
+        try{
+            Thread.sleep(4000);
+        }catch(Exception e){
+            Thread.currentThread().interrupt();
+        }
+
+        this.finish();
+    }
+
+    public double getTime(){ return this.time; }
+    public void setTime( double t ){ this.time = t; }
+    public double getMaxTime(){ return this.maxTime; }
+    public void setMaxTime( double maxTime ){ this.maxTime = maxTime; }
 }

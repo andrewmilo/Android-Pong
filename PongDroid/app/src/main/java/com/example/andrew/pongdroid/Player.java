@@ -6,7 +6,7 @@ public class Player {
     protected int score;
     protected int width;
     protected int height;
-    protected int yVelocity; // pixels per movement
+    protected float yVelocity; // pixels per movement
     protected int x;
     protected int y;
 
@@ -23,7 +23,7 @@ public class Player {
     public int getY(){ return y; }
     public int getWidth(){ return width; }
     public int getHeight(){ return height; }
-    public int getYVelocity(){ return yVelocity; }
+    public float getYVelocity(){ return yVelocity; }
 
     public void moveUp(){ x += 1; }
     public void moveDown(){ x -= 1; }

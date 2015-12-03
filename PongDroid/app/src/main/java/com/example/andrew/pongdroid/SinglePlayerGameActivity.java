@@ -39,12 +39,6 @@ public class SinglePlayerGameActivity extends Game {
 
             case MotionEvent.ACTION_DOWN:
 
-               // if( Math.abs( player1.getX() - x ) <= player1.getWidth()
-               //         && Math.abs(player1.getY() - y) <= player1.getWidth() ) {
-                //    Toast.makeText(this, "ON TPLAYER", Toast.LENGTH_LONG).show();
-               //     onPlayer = true;
-                //}
-
                 if (mVelocityTracker == null) {
 
                     mVelocityTracker = VelocityTracker.obtain();
@@ -63,14 +57,16 @@ public class SinglePlayerGameActivity extends Game {
 
                 mVelocityTracker.computeCurrentVelocity(1000);
 
-                //if( onPlayer ) {
+                player1.setYVelocity((int) VelocityTrackerCompat.getYVelocity(mVelocityTracker,
+                        pointerId));
 
-                    player1.setYVelocity( (int) VelocityTrackerCompat.getYVelocity(mVelocityTracker,
-                            pointerId) );
+                /* Bound the player's Y movement */
+                if( y - player1.getHeight()/2 <= 0 )
+                    y = player1.getHeight()/2; // top
+                if( y + player1.getHeight()/2 >= getScreenHeight() - 75 )
+                    y = getScreenHeight() - player1.getHeight() + 25; // bottom
 
-                    player1.setPosition(player1.getX(), y);
-                //}
-
+                player1.setPosition(player1.getX(), y);
                 break;
             case MotionEvent.ACTION_UP:
                 player1.setYVelocity( 0 ); // clear Y velocity
